@@ -6,7 +6,6 @@
   <title>KNeB — Koło Naukowe ZAPRO</title>
   <meta name="description" content="Koło Naukowe ZAPRO - Uniwersytet Morski w Gdyni." />
 
-  <!-- Typografia -->
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
@@ -36,14 +35,20 @@
       margin: 0;
       font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, sans-serif;
       color: #0f1724;
-      line-height: 1.5;
-      background: var(--bg);
+      line-height: 1.6;
+      /* Ustawienie tła - fallback kolor, potem obrazek */
+      background-color: var(--bg);
+      background-image: url('tlo.jpg');
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-attachment: fixed;
+      background-size: cover;
     }
 
     a {
       color: var(--accent);
       text-decoration: none;
-      transition: color var(--transition-fast), opacity var(--transition-fast), background var(--transition-fast);
+      transition: color var(--transition-fast), opacity var(--transition-fast);
     }
 
     a:hover {
@@ -62,11 +67,24 @@
     }
 
     p {
-      margin: 0;
+      margin: 0 0 1em 0; /* Dodano odstęp po akapitach */
+    }
+    
+    p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Listy w treści */
+    ul {
+      margin: 0 0 1em 0;
+      padding-left: 20px;
+    }
+    
+    li {
+      margin-bottom: 4px;
     }
 
     /* Layout ogólny */
-
     .container {
       max-width: 1120px;
       margin: 0 auto;
@@ -74,7 +92,7 @@
     }
 
     header {
-      background: #ffffffcc;
+      background: rgba(255, 255, 255, 0.9);
       border-bottom: 1px solid var(--border);
       backdrop-filter: blur(10px);
       position: sticky;
@@ -111,62 +129,12 @@
       color: var(--muted);
     }
 
-    /* Przyciski */
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 10px 16px;
-      border-radius: var(--radius-sm);
-      border: none;
-      background: var(--accent);
-      color: #ffffff;
-      font-weight: 600;
-      font-size: 0.95rem;
-      cursor: pointer;
-      box-shadow: 0 4px 12px rgba(11, 120, 209, 0.25);
-      transition: box-shadow var(--transition-fast), transform var(--transition-fast), background var(--transition-fast);
-    }
-
-    .btn:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 8px 24px rgba(11, 120, 209, 0.28);
-    }
-
-    .btn:active {
-      transform: translateY(0);
-      box-shadow: 0 2px 8px rgba(11, 120, 209, 0.25);
-    }
-
-    .btn:focus-visible {
-      outline: 2px solid var(--accent);
-      outline-offset: 2px;
-    }
-
-    .btn-secondary {
-      background: transparent;
-      color: var(--dark);
-      box-shadow: none;
-      padding-inline: 8px;
-    }
-
-    .btn-secondary:hover {
-      background: var(--accent-soft);
-      transform: none;
-      box-shadow: none;
-    }
-
-    /* Hero – tytuł na całą szerokość */
-
+    /* Hero */
     main {
       padding: 32px 0 40px;
     }
 
     .hero {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr);
-      gap: 20px;
       padding: 32px 0 12px;
     }
 
@@ -174,52 +142,31 @@
       font-size: clamp(2.1rem, 3.4vw, 2.8rem);
       letter-spacing: -0.03em;
       margin-bottom: 10px;
+      text-shadow: 0 2px 10px rgba(255,255,255,0.8); /* Opcjonalnie dla czytelności na tle */
     }
 
     .hero-lead {
-      color: var(--muted);
-      font-size: 0.98rem;
-      max-width: 720px;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 20px;
-      align-items: center;
-    }
-
-    .hero-actions a {
-      font-size: 0.95rem;
-    }
-
-    .hero-secondary-link {
-      color: var(--dark);
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      font-weight: 500;
-    }
-
-    .hero-secondary-link span {
+      color: var(--dark); /* Zmieniono na ciemniejszy dla kontrastu z tłem */
       font-size: 1.1rem;
-      line-height: 1;
+      max-width: 720px;
+      background: rgba(255,255,255,0.6);
+      padding: 10px;
+      border-radius: 8px;
+      backdrop-filter: blur(4px);
     }
 
     /* Karty / sekcje */
-
     .grid {
       display: grid;
       grid-template-columns: minmax(0, 2fr) minmax(260px, 360px);
       gap: 24px;
-      margin-top: 10px;
+      margin-top: 24px;
     }
 
     .card {
       background: #ffffff;
       border-radius: var(--radius-md);
-      padding: 18px 18px 16px;
+      padding: 24px;
       box-shadow: var(--shadow-soft);
     }
 
@@ -231,29 +178,38 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 10px;
+      margin-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 8px;
     }
 
     .section-title h3 {
-      font-size: 1rem;
+      font-size: 1.1rem;
     }
 
-    .section-title a {
-      font-size: 0.85rem;
+    /* Style tekstowe */
+    .about-text {
+      font-size: 0.95rem;
+      color: #334155;
+      text-align: justify; /* Wyjustowanie */
+    }
+
+    .meta-text {
+      margin: 8px 0 0;
+      font-size: 0.9rem;
       color: var(--muted);
+      text-align: justify; /* Wyjustowanie */
     }
 
-    .section-title a:hover {
-      color: var(--accent);
+    .meta-text strong {
+      color: var(--dark);
     }
 
     /* Zarząd koła */
-
     .team-list {
       display: flex;
       flex-direction: column;
-      gap: 12px;
-      margin-top: 6px;
+      gap: 16px;
     }
 
     .member {
@@ -263,8 +219,8 @@
     }
 
     .avatar {
-      width: 56px;
-      height: 56px;
+      width: 50px;
+      height: 50px;
       border-radius: var(--radius-sm);
       background: var(--accent-soft);
       display: flex;
@@ -281,136 +237,35 @@
       color: var(--muted);
     }
 
-    /* O nas */
-
-    .about-text {
-      font-size: 0.9rem;
-      color: var(--muted);
-    }
-
-    /* Bloki meta / aktualności / social */
-
-    .meta-text {
-      margin: 8px 0 0;
-      font-size: 0.9rem;
-      color: var(--muted);
-    }
-
-    .meta-text strong {
-      color: var(--dark);
-    }
-
-    /* Formularz / CTA */
-
-    .cta-card {
-      margin-top: 24px;
-    }
-
-    .cta-form {
-      display: none;
-      gap: 10px;
-      margin-top: 12px;
-    }
-
-    .cta-form.is-visible {
-      display: grid;
-    }
-
-    .cta-text {
-      margin-top: 10px;
-      color: var(--dark);
-      font-size: 0.9rem;
-    }
-
-    form input,
-    form textarea {
-      padding: 10px 12px;
-      border: 1px solid #e2e8f0;
-      border-radius: var(--radius-sm);
-      font-family: inherit;
-      font-size: 0.9rem;
-      transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
-    }
-
-    form textarea {
-      min-height: 120px;
-      resize: vertical;
-    }
-
-    form input:focus-visible,
-    form textarea:focus-visible {
-      outline: none;
-      border-color: var(--accent);
-      box-shadow: 0 0 0 1px rgba(11, 120, 209, 0.2);
-    }
-
     /* Stopka */
-
     footer {
       padding: 20px 0 28px;
       color: var(--muted);
       font-size: 0.85rem;
       border-top: 1px solid var(--border);
       background: #ffffff;
+      margin-top: 40px;
     }
 
     .footer-inner {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 12px;
       flex-wrap: wrap;
+      gap: 12px;
     }
 
     /* Responsywność */
-
     @media (max-width: 900px) {
       .grid {
-        grid-template-columns: minmax(0, 1fr);
-      }
-    }
-
-    @media (max-width: 720px) {
-      .hero {
-        padding-top: 20px;
-      }
-
-      .hero-actions {
-        align-items: stretch;
-      }
-
-      .footer-inner {
-        flex-direction: column;
-        align-items: flex-start;
+        grid-template-columns: 1fr;
       }
     }
   </style>
 
   <script>
     document.addEventListener("DOMContentLoaded", function () {
-      const joinBtn = document.getElementById("dolacz-btn");
-      const joinForm = document.getElementById("dolacz-form");
-
-      // Po kliknięciu "Dołącz" pokaż formularz
-      if (joinBtn && joinForm) {
-        joinBtn.addEventListener("click", function () {
-          joinForm.classList.add("is-visible");
-          joinBtn.setAttribute("disabled", "true");
-          joinBtn.textContent = "Formularz poniżej";
-        });
-      }
-
-      // Logika menu zostaje, ale przy braku elementów nic się nie zadzieje
-      const navToggle = document.getElementById("nav-toggle");
-      const navLinks = document.getElementById("nav-links");
-
-      if (navToggle && navLinks) {
-        navToggle.addEventListener("click", function () {
-          const isOpen = navLinks.classList.toggle("is-open");
-          navToggle.classList.toggle("is-open", isOpen);
-          navToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
-        });
-      }
+      // Skrypt gotowy do obsługi przycisków w przyszłości
     });
   </script>
 </head>
@@ -419,23 +274,17 @@
     <div class="container">
       <nav aria-label="Główna nawigacja">
         <div class="brand">
-          <img
-            src="logo.jpg"
-            alt="Logo Koła Naukowego ZAPRO"
-            onerror="this.style.display='none'"
-          />
+          <img src="logo.jpg" alt="Logo Koła" onerror="this.style.display='none'" />
           <div>
             <div class="brand-text-title">ZAPRO</div>
             <div class="brand-text-subtitle">Koło Naukowe ZAPRO — UMG</div>
           </div>
         </div>
-        <!-- brak odnośników: aktualności / o nas / galeria / kontakt -->
       </nav>
     </div>
   </header>
 
   <main class="container">
-    <!-- Tytuł na całą szerokość -->
     <section class="hero">
       <div>
         <h1 class="hero-title">Witajcie na stronie Koła Naukowego ZAPRO</h1>
@@ -443,88 +292,69 @@
           Koło działające na Wydziale Zarządzania i Nauk o Jakości Uniwersytetu Morskiego w Gdyni.
           Organizujemy sympozja, warsztaty i projekty studenckie — dołącz do nas!
         </p>
-
-      <!--  <div class="hero-actions">
-          <a class="btn" href="#dolacz">Dołącz do koła</a>
-          <a class="hero-secondary-link" href="#najblizsze">
-            Najbliższe spotkanie
-            <span>→</span>
-          </a>
-        </div>-->
       </div>
     </section>
 
-    <section class="grid" aria-label="Sekcje główne">
+    <section class="grid">
       <div>
-        <!-- O nas -->
-        <section class="card" id="onas" aria-labelledby="onas-heading">
+        <section class="card" id="onas">
           <div class="section-title">
-            <h3 id="onas-heading">O nas</h3>
+            <h3>O nas</h3>
           </div>
-          <p class="about-text">
-            Cel główny SKN ZAPRO
-Celem ZAPRO jest kształtowanie umiejętności Członków Koła w zakresie realizacji projektów o różnym charakterze.
-Misja
-Naszą misją jest integracja środowiska akademickiego wokół wspólnych zainteresowań, wymiana wiedzy i doświadczeń, a także wspieranie wzajemnego rozwoju naukowego i osobistego.
-</p><p class="about-text">
-Wizja
-Wizją jest stanie się widocznym liderem w aktywnościach społecznych, naukowych i organizacyjnych poprzez realizację projektów generowanych przez członków naszej społeczności.
-</p>
-<p class="about-text">
-Obszary działalności ZAPRO:
-NAUKOWA:
-Pisanie artykułów naukowych
-Udział w ogólnopolskich konferencjach naukowych
-Udział w międzynarodowych konferencjach naukowych
-Organizacja seminariów wewnętrznych
-Udział w seminariach zewnętrznych
-Wsparcie pisania prac dyplomowych
-Wsparcie pisania prac popularnonaukowych
-Inne.
-</p>
-<p class="about-text">
-SPOŁECZNA:
-Organizacja kiermaszy na cel charytatywny
-Uczestnictwo w szlachetnej paczce
-Aktywne wsparcie WOŚP 
-Zbiórki na potrzeby osób wymagających pomocy
-Oraz wiele, wiele innych 
-</p>
-<p class="about-text">
-ORGANIZACYJNA:
-UDZIAŁ W POCZCIE SZTANDAROWYM UCZELNI
-Udział w targach edukacyjnych
-Udział w debatach
-Inne 
-</p>
-
           
+          <div class="about-text">
+            <p><strong>Cel główny SKN ZAPRO:</strong> celem ZAPRO jest kształtowanie umiejętności Członków Koła w zakresie realizacji projektów o różnym charakterze.</p>
+            
+            <p><strong>Misja:</strong> naszą misją jest integracja środowiska akademickiego wokół wspólnych zainteresowań, wymiana wiedzy i doświadczeń, a także wspieranie wzajemnego rozwoju naukowego i osobistego.</p>
+            
+            <p><strong>Wizja:</strong> wizją jest stanie się widocznym liderem w aktywnościach społecznych, naukowych i organizacyjnych poprzez realizację projektów generowanych przez członków naszej społeczności.</p>
+
+            <p><strong>Obszary działalności ZAPRO:</strong></p>
+            
+            <strong>NAUKOWA:</strong>
+            <ul>
+              <li>Pisanie artykułów naukowych</li>
+              <li>Udział w ogólnopolskich konferencjach naukowych</li>
+              <li>Udział w międzynarodowych konferencjach naukowych</li>
+              <li>Organizacja seminariów wewnętrznych</li>
+              <li>Udział w seminariach zewnętrznych</li>
+              <li>Wsparcie pisania prac dyplomowych</li>
+              <li>Wsparcie pisania prac popularnonaukowych</li>
+              <li>Inne</li>
+            </ul>
+
+            <strong>SPOŁECZNA:</strong>
+            <ul>
+              <li>Organizacja kiermaszy na cel charytatywny</li>
+              <li>Uczestnictwo w szlachetnej paczce</li>
+              <li>Aktywne wsparcie WOŚP</li>
+              <li>Zbiórki na potrzeby osób wymagających pomocy</li>
+              <li>Oraz wiele, wiele innych</li>
+            </ul>
+
+            <strong>ORGANIZACYJNA:</strong>
+            <ul>
+              <li>UDZIAŁ W POCZCIE SZTANDAROWYM UCZELNI</li>
+              <li>Udział w targach edukacyjnych</li>
+              <li>Udział w debatach</li>
+              <li>Inne</li>
+            </ul>
+          </div>
         </section>
 
-        <!-- ZAMIANA GALERII NA AKTUALNOŚCI – stylistyka jak blok media społecznościowe -->
-        <section class="card" id="aktualnosci" aria-labelledby="aktualnosci-heading">
-          <strong id="aktualnosci-heading">Aktualności</strong>
-
+        <section class="card" id="aktualnosci" style="margin-top: 16px;">
+          <div class="section-title">
+             <h3>Aktualności</h3>
+          </div>
           <p class="meta-text">
-            <strong>Udział w charytaywnym kiermaszu świątecznym</strong><br />
-            Członkowie naszego koła uczestniczyli wraz z kołem naukowym Cargo w charetatywnym kiermaszu swiątecznym. Pieniądze zostały przekazanu na cele Hospicjum stacjonarnego św. Wawrzyńca.
+            <strong>Udział w charytatywnym kiermaszu świątecznym</strong><br />
+            Członkowie naszego koła uczestniczyli wraz z kołem naukowym Cargo w charytatywnym kiermaszu świątecznym. Pieniądze zostały przekazane na cele Hospicjum stacjonarnego św. Wawrzyńca.
           </p>
-
-          <!--  <p class="meta-text">
-            <strong>Sympozjum morskie</strong><br />
-            Trwają przygotowania do kolejnej edycji sympozjum poświęconego branży morskiej.
-          </p>
-
-          <p class="meta-text">
-            <strong>Rekrutacja do zarządu</strong><br />
-            Poszukujemy osób chętnych do współtworzenia zarządu koła – szczegóły mailowo po wysłaniu zgłoszenia.
-          </p>-->
         </section>
       </div>
 
-      <aside aria-label="Zarząd, najbliższe spotkanie i media społecznościowe">
-        <!-- Zarząd przeniesiony z hero do bocznego bloku -->
-        <section class="card" aria-label="Zarząd koła">
+      <aside>
+        <section class="card">
           <div class="section-title">
             <h3>Zarząd koła</h3>
           </div>
@@ -543,115 +373,62 @@ Inne
                 <div class="member-role">Przewodniczący</div>
               </div>
             </div>
-           <!--<div class="member">
-              <div class="avatar">??</div>
+		<div class="member">
+              <div class="avatar">NB</div>
               <div>
-                <strong>w trakcie rekrutacji</strong>
-                <div class="member-role">Wiceprzewodniczący</div>
+                <strong>Natalia Burzyk</strong>
+                <div class="member-role">Wiceprzewodnicząca</div>
               </div>
             </div>
-            <div class="member">
-              <div class="avatar">??</div>
-              <div>
-                <strong>w trakcie rekrutacji</strong>
-                <div class="member-role">Skarbnik</div>
-              </div>
-            </div>--> 
-          </div>
+            </div>
         </section>
 
         <section class="card" id="najblizsze">
-          <strong>Ambasadorzy ZaPro</strong>
+          <div class="section-title">
+             <h3>Ambasadorzy ZaPro</h3>
+          </div>
           <p class="meta-text">
             28.11.2025 r. podczas Seminarium Kół Naukowych w Uniwersytecie Morskim w Gdyni spotkali się przedstawiciele SKN ZAPRO oraz SKN SENEKA z Akademii Nauk Stosowanych w Elblągu.
           </p>
           <p class="meta-text" style="margin-top: 10px;">
-            Podczas spotkania nawiązano współpracę poprzez powołanie Ambasadorów, mianowicie:
-Ambasadorem SKN ZAPRO w SKN SENEKA
-została Olimpia Łebkowska 
-Ambasadorem SKN SENEKA w SKN ZAPRO 
-został Jan Lewandowski 
+            Podczas spotkania nawiązano współpracę poprzez powołanie Ambasadorów, mianowicie:<br>
+            <strong>Ambasadorem SKN ZAPRO w SKN SENEKA</strong> została Olimpia Łebkowska.<br>
+            <strong>Ambasadorem SKN SENEKA w SKN ZAPRO</strong> został Jan Lewandowski.
           </p>
-          
         </section>
 
         <section class="card" id="kontakt">
-          <strong>Media społecznościowe</strong>
+           <div class="section-title">
+             <h3>Media społecznościowe</h3>
+          </div>
           <p class="meta-text">
             Znajdź nas na
-            <a href="https://www.facebook.com/KoloNaukoweCargo/" target="_blank" rel="noopener noreferrer">Facebooku</a>
+            <a href="https://www.facebook.com/KoloNaukoweCargo/" target="_blank">Facebooku</a>
             i
-            <a href="https://www.instagram.com/cargo.umg" target="_blank" rel="noopener noreferrer">Instagramie</a>.
+            <a href="https://www.instagram.com/cargo.umg" target="_blank">Instagramie</a>.
+          </p>
+        </section>
+
+        <section class="card cta-card" id="dolacz">
+          <div class="section-title">
+            <h3>Kontakt</h3>
+          </div>
+          <p class="cta-text" style="font-size: 0.9rem;">
+            <strong>Adres:</strong><br>
+            Katedra Zarządzania i Ekonomii<br>
+            Wydział Zarządzania i Nauk o Jakości<br>
+            Uniwersytet Morski w Gdyni<br>
+            ul. Morska 81-87, 81-225 Gdynia
+          </p>
+          <p class="cta-text" style="margin-top: 12px; font-size: 0.9rem;">
+            <strong>Opiekun Koła:</strong> dr inż. Tomasz Winnicki<br>
+            <strong>Email:</strong> t.winnicki@wznj.umg.edu.pl
+          </p>
+          <p class="cta-text" style="margin-top: 12px; font-style: italic; color: var(--muted);">
+            Zostań Członkiem ZAPRO – Deklaracja, wydrukuj, wypełnij, umów się mailowo na spotkanie.
           </p>
         </section>
       </aside>
-    </section>
-
-    <section class="card cta-card" id="dolacz" aria-labelledby="dolacz-heading">
-      <div class="section-title">
-        <h3 id="dolacz-heading">Kontakt</h3>
-      </div>
-      <p class="cta-text">
-       Adres: 
-Katedra Zarządzania i Ekonomii				   
-Wydział Zarządzania i Nauk o Jakości
-Uniwersytet Morski w Gdyni
-ul. Morska 81-87, 81-225 Gdynia</p>
-<p class="cta-text">Opiekun Koła: dr inż. Tomasz Winnicki
-Kontakt: t.winnicki@wznj.umg.edu.pl
-Zostań Członkiem ZAPRO – Deklaracja, wydrukuj, wypełnij, umów się mailowo na spotkanie. 
-      </p>
-     <!-- <p class="cta-text">
-        Kliknij przycisk, a poniżej pojawi się formularz zgłoszeniowy. Po wysłaniu trafi on do
-        opiekuna koła: <strong>dr inż. Tomasza Winnickiego</strong>.
-      </p>
-
-      <button type="button" class="btn" id="dolacz-btn" style="margin-top: 12px;">
-        Dołącz
-      </button>
-
-       FORMULARZ – na starcie ukryty, pokazuje się po kliknięciu "Dołącz" 
-      <form
-        id="dolacz-form"
-        class="cta-form"
-        action="https://example.com/form-handler"
-        method="POST"
-      >
-        
-          W miejsce https://example.com/form-handler wstawiasz adres endpointu
-          zewnętrznego systemu, który wyśle maila na t.winnicki@wznj.umg.edu.pl
-        
-
-        <input type="hidden" name="subject" value="Nowe zgłoszenie do Koła Naukowego ZAPRO" />
-
-        <label>
-          Imię i nazwisko
-          <input type="text" name="name" required />
-        </label>
-
-        <label>
-          Adres e-mail
-          <input type="email" name="email" required />
-        </label>
-
-        <label>
-          Kierunek / rok studiów (opcjonalnie)
-          <input type="text" name="study_info" />
-        </label>
-
-        <label>
-          Wiadomość
-          <textarea name="message" required placeholder="Napisz kilka słów o sobie i dlaczego chcesz dołączyć."></textarea>
-        </label>
-
-        <button type="submit" class="btn">
-          Wyślij zgłoszenie
-        </button>
-
-        <p class="cta-text" style="font-size: 0.8rem; color: #6b7280;">
-          Wysyłając formularz wyrażasz zgodę na kontakt mailowy w sprawach związanych z działalnością koła.
-        </p>
-      </form>-->
     </section>
   </main>
 
@@ -665,5 +442,3 @@ Zostań Członkiem ZAPRO – Deklaracja, wydrukuj, wypełnij, umów się mailowo
   </footer>
 </body>
 </html>
-
-
